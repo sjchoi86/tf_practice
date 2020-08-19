@@ -91,8 +91,15 @@ def get_mdn_training_data():
     """
     Get training data for mixture density networks
     """
+    # Get x
     x_min,x_max,n_train_half,y_max,var_scale = 0,100,1000,100,1.0 # 0,100,1000,100,0.5 
     x_train = np.linspace(x_min,x_max,n_train_half).reshape((-1,1)) # [1000 x 1]
+    
+    # Shuffle?
+    n = x_train.shape[0]
+    x_train = x_train[np.random.permutation(n),:]
+
+    # Get y
     y_train = np.concatenate((y_max*np.sin(2.0*np.pi*x_train/(x_max-x_min))+2*y_max*x_train/x_max,
                               y_max*np.cos(2.0*np.pi*x_train/(x_max-x_min)))+2*y_max*x_train/x_max,
                               axis=1) # [1000 x 2]
