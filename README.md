@@ -13,6 +13,7 @@ This repo contains
 - Parallel Rollouts with TF Model 
 - Proximal Policy Optimization for PyBullet Ant
 - Soft Actor-Critic for PyBullet Ant
+- Using Custom Forward and Backward Paths in TF
 
 More to come
 - Variational AutoEncoder 
