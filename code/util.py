@@ -53,6 +53,9 @@ def gpu_sess():
     return sess
 
 def suppress_tf_warning():
+    """
+    Suppress TF warning message
+    """
     import tensorflow as tf
     import os
     import logging
@@ -62,3 +65,43 @@ def suppress_tf_warning():
     tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
     logging.getLogger('tensorflow').disabled = True
     deprecation._PRINT_DEPRECATION_WARNINGS = False
+    
+class NormalizerClass(object):
+    """
+    Normalizer Class
+    """
+    def __init__(self,raw_data,eps=1e-8):
+        self.raw_data = raw_data
+        self.eps      = eps
+        self.mu       = np.mean(self.raw_data,axis=0)
+        self.std      = np.std(self.raw_data,axis=0)
+        self.nzd_data = self.get_nzdval(self.raw_data)
+        self.org_data = self.get_orgval(self.nzd_data)
+        self.max_err  = np.max(self.raw_data-self.org_data)
+    def get_nzdval(self,data):
+        n = data.shape[0]
+        nzd_data = (data - np.tile(self.mu,(n,1))) / np.tile(self.std+self.eps,(n,1))
+        return nzd_data
+    def get_orgval(self,data):
+        n = data.shape[0]
+        org_data = data*np.tile(self.std+self.eps,(n,1))+np.tile(self.mu,(n,1))
+        return org_data
+    
+def get_mdn_training_data():
+    """
+    Get training data for mixture density networks
+    """
+    x_min,x_max,n_train_half,y_max,var_scale = 0,100,1000,100,1.0 # 0,100,1000,100,0.5 
+    x_train = np.linspace(x_min,x_max,n_train_half).reshape((-1,1)) # [1000 x 1]
+    y_train = np.concatenate((y_max*np.sin(2.0*np.pi*x_train/(x_max-x_min))+2*y_max*x_train/x_max,
+                              y_max*np.cos(2.0*np.pi*x_train/(x_max-x_min)))+2*y_max*x_train/x_max,
+                              axis=1) # [1000 x 2]
+    x_train,y_train = np.concatenate((x_train,x_train),axis=0),np.concatenate((y_train,-y_train),axis=0)
+    n_train = y_train.shape[0]
+    y_train = y_train + var_scale*y_max*np.random.randn(n_train,2)*np.square(1-x_train/x_max) # add noise 
+    nzr_x_train = NormalizerClass(x_train)
+    x_train = nzr_x_train.get_nzdval(x_train) # normalize training input
+    y_train = NormalizerClass(y_train).nzd_data # normalize training output 
+    return x_train,y_train
+
+    
