@@ -1,8 +1,6 @@
 # Yet Anothoer ~~(and outdated)~~ TensorFlow 1.x Examples
-
-TensorFlow 1.x Practice
-
-Try to use ```tf.layer``` for more unified implementation. 
+- Try to be self-contained as possible within a single Jupyter notebook. 
+- Try to use ```tf.layer``` for more unified implementation. 
 
 #### This repo contains
 - Linear regression
