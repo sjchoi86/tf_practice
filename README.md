@@ -1,9 +1,10 @@
-# tf_practice
+# Yet Anothoer ~~(and outdated)~~ TensorFlow 1.x Examples
+
 TensorFlow 1.x Practice
 
 Try to use ```tf.layer``` for more unified implementation. 
 
-This repo contains
+#### This repo contains
 - Linear regression
 - Multi Layer Perceptron for MNIST Classification
 - Convolutional Neural Networks for MNIST Classification
@@ -15,7 +16,7 @@ This repo contains
 - Soft Actor-Critic for PyBullet Ant
 - Using Custom Forward and Backward Paths in TF
 
-More to come
+#### More to come
 - Variational AutoEncoder 
 - Wasserstein AutoEncoder
 - And so forth
