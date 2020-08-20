@@ -13,8 +13,8 @@
 - Proximal Policy Optimization for PyBullet Ant
 - Soft Actor-Critic for PyBullet Ant
 - Using Custom Forward and Backward Paths in TF
+- Variational AutoEncoder 
 
 #### More to come
-- Variational AutoEncoder 
 - Wasserstein AutoEncoder
 - And so forth
