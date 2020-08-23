@@ -13,7 +13,8 @@
 - *GAN*: Generative Adversarial Networks
 - TF Model save and restore
 - Parallel Processing with Ray
-- Parallel Rollouts with TF Model 
+- Parallel Rollouts with TF Model
+- Distributed *PPO* with *Ray*
 - Using Custom Forward and Backward Paths in TF
 
 #### More to come
