@@ -66,6 +66,13 @@ def suppress_tf_warning():
     logging.getLogger('tensorflow').disabled = True
     deprecation._PRINT_DEPRECATION_WARNINGS = False
     
+def suppress_gym_warning():
+    """
+    Suppress gym warning message
+    """
+    import gym
+    gym.logger.set_level(40) # gym logger 
+    
 class NormalizerClass(object):
     """
     Normalizer Class
