@@ -10,6 +10,7 @@
 - *PPO*: Proximal Policy Optimization for PyBullet Ant
 - *SAC*: Soft Actor-Critic for PyBullet Ant
 - *VAE*: Variational AutoEncoder 
+- *WAE*: Wasserstein AutoEncoder 
 - *GAN*: Generative Adversarial Networks
 - TF Model save and restore
 - Parallel Processing with Ray
@@ -17,6 +18,3 @@
 - Distributed *PPO* with *Ray*
 - Using Custom Forward and Backward Paths in TF
 
-#### More to come
-- Wasserstein AutoEncoder
-- And so forth
